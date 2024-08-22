@@ -11,13 +11,18 @@ Machine working inside.
 ![CustomDockerContainerUbuntu24 04](https://github.com/user-attachments/assets/35ba6f1a-f423-48eb-b768-d10982966a54)
 
 ## Steps
-1. Launch an EC2 instance
+### 1. Launch an EC2 instance
+
 Name : Custom-Docker-Container
+
 AMI : Ubuntu 24.04
+
 Instance type : t2.micro
+
 Launch instance
 
-2. Connect to your EC2 Instance
+### 2. Connect to your EC2 Instance
+
 `sudo apt update -y`: Updates the package lists and upgrades all installed packages to the latest versions.
 
 `sudo apt upgrade -y`: Installs the latest versions of all packages currently installed on the system without requiring confirmation.
@@ -44,20 +49,30 @@ Launch instance
 
 vi CustomDockerfile (Code)
 
-4. Take a new session of same instance in new Command Prompt and write as follows:
+### 4. Take a new session of same instance in new Command Prompt and write as follows:
+
 docker ps -a
+
 docker container inspect <iamge_id>
+
 curl http://172.17.0.2
 
-5. To do versioning of docker container, you need to make changes in your CustomDockerfile and build a image with new tag. So follow the below steps:
+### 5. To do versioning of docker container, you need to make changes in your CustomDockerfile and build a image with new tag. So follow the below steps:
+
 sudo nano CustomDockerfile
+
 sudo docker build -f CustomDockerfile -t kavitkaimage:v1.1 .
+
 sudo docker container run -it kavitkaimage:v1.1 /bin/bash
+
 Also Don’t forget to run your Apache2 after entering the /bin/bash : service apache2 start
 
-6. Take a 3rd New Session (Make sure your first docker container is up and running or else there will be no new IP address assigned to your new docker container)
+### 6. Take a 3rd New Session (Make sure your first docker container is up and running or else there will be no new IP address assigned to your new docker container)
+
 docker ps -a
+
 docker container inspect <iamge_id>
+
 curl http://172.17.0.3
 
 ## Documentation Link
