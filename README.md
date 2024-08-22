@@ -51,29 +51,29 @@ vi CustomDockerfile (Code)
 
 ### 4. Take a new session of same instance in new Command Prompt and write as follows:
 
-docker ps -a
+`docker ps -a`: Lists all Docker containers, including those that are stopped.
 
-docker container inspect <image_id>
+`docker container inspect <image_id>`: Provides detailed information about a specific Docker container identified by `<image_id>`.
 
-curl http://172.17.0.2
+`curl http://172.17.0.2`: Sends an HTTP request to the specified IP address (`172.17.0.2`) to check the response from a web service running at that address.
 
 ### 5. To do versioning of docker container, you need to make changes in your CustomDockerfile and build a image with new tag. So follow the below steps:
 
-sudo nano CustomDockerfile
+`sudo nano CustomDockerfile`: Opens the CustomDockerfile for editing using the Nano text editor.
 
-sudo docker build -f CustomDockerfile -t kavitkaimage:v1.1 .
+`sudo docker build -f CustomDockerfile -t kavitkaimage:v1.1 .`: Builds a Docker image named `kavitkaimage:v1.1` from the CustomDockerfile.
 
-sudo docker container run -it kavitkaimage:v1.1 /bin/bash
+`sudo docker container run -it kavitkaimage:v1.1 /bin/bash`: Runs a container from the `kavitkaimage:v1.1` image and opens a Bash shell.
 
-Also Don’t forget to run your Apache2 after entering the /bin/bash : service apache2 start
+`service apache2 start`: Starts the Apache2 service inside the running container.
 
 ### 6. Take a 3rd New Session (Make sure your first docker container is up and running or else there will be no new IP address assigned to your new docker container)
 
-docker ps -a
+`docker ps -a`: Lists all Docker containers, including those that are stopped.
 
-docker container inspect <image_id>
+`docker container inspect <image_id>`: Provides detailed information about a specific Docker container identified by `<image_id>`.
 
-curl http://172.17.0.3
+`curl http://172.17.0.3`: Sends an HTTP request to the IP address `172.17.0.3` to check the response from a web service running at that address.
 
 ## Documentation Link
 
