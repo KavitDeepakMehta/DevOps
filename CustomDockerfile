@@ -1,0 +1,27 @@
+# Use Ubuntu 24.04 as the base image (or the latest supported version)
+FROM ubuntu:24.04
+
+# Update installed packages and install Apache
+RUN apt update && \
+    apt install -y apache2 && \
+    service apache2 start && \
+    rm -rf /var/lib/apt/lists/*
+
+# Write hello world message
+RUN echo 'This is custom build' > /var/www/html/index.html
+
+# Create a custom Apache configuration file to set the ServerName
+RUN echo 'ServerName localhost' > /etc/apache2/conf-available/servername.conf && \
+    a2enconf servername
+
+# Configure Apache
+RUN mkdir -p /var/run/apache2 && \
+    mkdir -p /var/lock/apache2 && \
+    echo '#!/bin/bash\n/usr/sbin/apachectl -D FOREGROUND' > /usr/local/bin/run_apache.sh && \
+    chmod +x /usr/local/bin/run_apache.sh
+
+# Expose port 80
+EXPOSE 80
+
+# Start Apache service
+CMD ["/usr/local/bin/run_apache.sh"]
