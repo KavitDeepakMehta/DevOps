@@ -53,7 +53,7 @@ vi CustomDockerfile (Code)
 
 docker ps -a
 
-docker container inspect <iamge_id>
+docker container inspect <image_id>
 
 curl http://172.17.0.2
 
@@ -71,7 +71,7 @@ Also Don’t forget to run your Apache2 after entering the /bin/bash : service a
 
 docker ps -a
 
-docker container inspect <iamge_id>
+docker container inspect <image_id>
 
 curl http://172.17.0.3
 
